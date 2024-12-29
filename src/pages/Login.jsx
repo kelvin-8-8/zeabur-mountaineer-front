@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../route/AuthContext";
 import ReCAPTCHA from 'react-google-recaptcha';
 import useRecaptcha from "../config/useRecaptcha";
-import { api } from "../config/api";
+import axios from "axios";
 
 export default function Login({ updateAuthState }) {
 
@@ -45,7 +45,7 @@ export default function Login({ updateAuthState }) {
 		// Send the captcha token to your server for verification make api call
 		try {
 			// 將表單資料與 token 一起發送到後端
-			const response = await api.post("/verify",
+			const response = await axios.post("http://localhost:8080/verify",
 				{
 					token: captchaToken // Captcha 驗證的 token
 				}

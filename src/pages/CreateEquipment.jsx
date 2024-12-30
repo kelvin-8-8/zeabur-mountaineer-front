@@ -158,26 +158,25 @@ export default function CreateEquipment() {
             return
         }
         
-
         const addItem = {
             name,
             description,
             price: parseInt(price, 10),
-            type,
-            image, // 圖片 URL
+            type: newType,
+            url: image, // 圖片 URL
         };
 
         console.log(addItem);
         
 
-        // try {
-        //     const response = await addEquipment(addItem);
-        //     console.log("新增成功", response.data);
-        //     loadEquipment(); // 更新資料
-        //     document.getElementById("create_modal").close(); // 關閉 modal
-        // } catch {
-        //     console.error("新增失敗", error);
-        // }
+        try {
+            const response = await addEquipment(addItem);
+            console.log("新增成功", response.data);
+            loadEquipment(); // 更新資料
+            document.getElementById("create_modal").close(); // 關閉 modal
+        } catch {
+            console.error("新增失敗", error);
+        }
     }
     
 
@@ -253,7 +252,7 @@ export default function CreateEquipment() {
                                                 d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                                             />
                                         </svg>
-                                        <span className='text-center'>警告！ 先上傳圖片，再按確認送出</span>
+                                        <span className='text-center'>警告！ 先上傳圖片，並都填寫完成，再按確認送出</span>
                                     </div>
                                 )}
                             </div>
@@ -365,7 +364,7 @@ export default function CreateEquipment() {
                                                 </form>
                                             </dialog>
                                             {/* 刪除按鈕 */}
-                                            <input type="button" value="DELETE" className="btn btn-outline btn-error btn-xs sm:btn-sm sm:mx-2 mt-1" onClick={() => document.getElementById(`deletemodal-${items.id}`).showModal()} />
+                                            <input type="button" value="DELETE" className="btn btn-outline btn-error btn-xs sm:btn-sm mt-1" onClick={() => document.getElementById(`deletemodal-${items.id}`).showModal()} />
                                             {/* Modal 刪除*/}
                                             <dialog id={`deletemodal-${items.id}`} className="modal">
                                                 <div className="modal-box max-w-xs">

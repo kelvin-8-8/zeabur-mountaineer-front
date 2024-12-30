@@ -28,7 +28,7 @@ export default function CartButton({ cart, removeFromCart }) {
             clearCart();
         } catch (error) {
             console.error('送出訂單失敗:', error);
-            alert('送出訂單失敗，請重試。');
+            alert('送出訂單失敗，請登入後重試。');
         }
     };
 

@@ -13,6 +13,8 @@ export const getAllEquipment = async () => {
 
 export const addEquipment = async (addItem) => {
   try {
+    console.log("要傳給後端新增的", addItem);
+    
     const response = await api.post('/equip/add', addItem);
     return response.data;
   } catch (error) {

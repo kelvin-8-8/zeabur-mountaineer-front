@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
-import { addOrder } from '../services/orderService'; 
+import { addOrder } from '../services/orderService';
 
-export default function CartButton({ cart, removeFromCart }) {
+export default function CartButton({ cart, removeFromCart, clearCart }) {
 
     const [selectedDate, setSelectedDate] = useState('');
     const [rentalDays, setRentalDays] = useState('');

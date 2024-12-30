@@ -92,7 +92,7 @@ export default function Profile( {updateAuthState} ) {
 								<input
 									type="text"
 									className="grow"
-									placeholder={trueName}
+									placeholder="輸入你的真實姓名"
 									value={trueName}
 									onChange={(e) => setTrueName(e.target.value)}
 								/>

@@ -20,7 +20,7 @@ export default function Profile( {updateAuthState} ) {
 				console.log(result.data);
 				if (result.status === 200) {
 					setUsername(result.data.username);
-					setTrueName(result.data.truename);
+					setTrueName(result.data.trueName);
 					setEmail(result.data.email);
 				}
 			} catch (error) {
@@ -92,7 +92,6 @@ export default function Profile( {updateAuthState} ) {
 								<input
 									type="text"
 									className="grow"
-									placeholder="Enter your real name"
 									value={trueName}
 									onChange={(e) => setTrueName(e.target.value)}
 								/>

@@ -66,7 +66,7 @@ export default function AdminPage() {
 
   return (
     <div className='flex flex-col items-center justify-center'>
-            <div className='justify-center items-center content-center max-w-screen-xl'>
+            <div className='flex flex-row flex-wrap justify-center items-center content-center max-w-screen-xl'>
                 <div className="card p-4 bg-base-100 rounded-md flex flex-wrap flex-row justify-center gap-6">
                     <input type="button" value="All" className={`btn btn-md ${roleFilters.length === 3 ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ALL')}/>
                     <input type="button" value="User" className={`btn btn-md ${roleFilters.includes('ROLE_GUEST') ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ROLE_GUEST')}/>
@@ -77,9 +77,9 @@ export default function AdminPage() {
                 <div className="divider"></div>
 
 
-                <div className='text-center min-h-800px'>
+                <div className='text-center min-h-800px w-full'>
                     <div className="overflow-x-auto">
-                        <table className="table">
+                        <table className="table table-auto w-full">
                             {/* head */}
                             <thead>
                                 <tr>
@@ -125,8 +125,6 @@ export default function AdminPage() {
                     </div>
                 </div>
             </div>
-
-
         </div>
     )
 }

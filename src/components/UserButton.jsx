@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export default function UserButton() {
   return (
-    <label className="btn btn-ghost btn-circle">
+    <label className="btn btn-sm sm:btn-md btn-ghost btn-circle">
       
       {/* profile icon */}
       <svg

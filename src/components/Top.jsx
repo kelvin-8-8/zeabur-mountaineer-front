@@ -34,7 +34,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle lg:hidden"
+              className="btn btn-sm md:btn-md btn-ghost btn-circle lg:hidden"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -64,10 +64,10 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
                 <Link to="/about">About</Link>
               </li>
               {/* Features */}
-              <li className="text-success">
+              <li>
                 <a>Features</a>
                 <ul className="p-2">
-                  <li className="underline">
+                  <li>
                     <Link to="/equipment">借裝備</Link>
                   </li>
                   {/* <li>
@@ -104,7 +104,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
           </div>
           {/* 標題 */}
           {}
-          <Link to="/" className="text-4xl font-tradewinds pl-4">Mountaineer</Link>
+          <Link to="/" className="hidden sm:block sm:text-4xl font-tradewinds md:pl-4">Mountaineer</Link>
         </div>
 
         {/* 中間 */}
@@ -181,7 +181,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
 
         {/* 右邊 */}
         <div className="navbar-end">
-          <ul className="flex flex-row">
+          <ul className="flex flex-row items-center justify-center">
             {
               isLoggedIn ? 
               <>
@@ -203,21 +203,25 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
                     <LogoutButton updateAuthState={updateAuthState}/>
                   </Link>
                 </li> 
+                <li>
+                  <SwitchButton />
+                </li>
               </> :
               <>
-              <li>
-                <Link to="/login">
-                  <UserButton />
-                </Link>
-              </li>
-              <li>
-                <CartButton cart={cart} removeFromCart={removeFromCart}/>
-              </li>
-            </>
+                <li>
+                  <Link to="/login">
+                    <UserButton />
+                  </Link>
+                </li>
+                <li>
+                  <CartButton cart={cart} removeFromCart={removeFromCart}/>
+                </li>
+                <li>
+                  <SwitchButton />
+                </li>
+              </>
             }
-            <li>
-              <SwitchButton />
-            </li>
+            
           </ul>
         </div>
       </div>

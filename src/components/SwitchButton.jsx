@@ -14,7 +14,7 @@ export default function SwitchButton() {
 
   return (
     <label
-      className="btn btn-ghost btn-circle swap swap-rotate relative z-0"
+      className="btn btn-sm sm:btn-md btn-ghost btn-circle swap swap-rotate relative z-0"
     >
       {/* this hidden checkbox controls the state */}
       <input type="checkbox" onClick={toggleTheme}/>

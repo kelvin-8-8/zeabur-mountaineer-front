@@ -6,7 +6,7 @@ import LogoutButton from "../components/LogoutButton";
 import CartButton from "../components/CartButton";
 import FolderButton from "./FolderButton";
 
-export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFromCart}) {
+export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFromCart, clearCart}) {
 
   const ROLE_HIERARCHY = {
     "ROLE_GUEST": 1,
@@ -17,7 +17,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
   window.addEventListener('click', function(e) {
       document.querySelectorAll('.dropdownDetails').forEach(function(dropdownDetails) {
         if (!dropdownDetails.contains(e.target)) {
-          // Click was outside the dropdown, close it
+          // Click was outside the dropdown, close it 
           dropdownDetails.open = false;
         }
       });
@@ -25,7 +25,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
     
     
   return (
-    <div className="flex flex-col justify-center items-center bg-base-200 w-full">
+    <div className="flex flex-col justify-center items-center bg-base-200">
       <div className="navbar bg-base-200 xs:w-full max-w-screen-xl z-30 relative">
         {/* 左側 */}
         <div className="navbar-start">
@@ -212,7 +212,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
                   </Link>
                 </li>
                 <li>
-                  <CartButton cart={cart} removeFromCart={removeFromCart}/>
+                  <CartButton cart={cart} removeFromCart={removeFromCart} clearCart={clearCart}/>
                 </li>
                 <li>
                   <Link to="/">
@@ -230,7 +230,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
                   </Link>
                 </li>
                 <li>
-                  <CartButton cart={cart} removeFromCart={removeFromCart}/>
+                  <CartButton cart={cart} removeFromCart={removeFromCart} clearCart={clearCart}/>
                 </li>
                 <li>
                   <SwitchButton />

@@ -256,7 +256,7 @@ export default function Order() {
         }
     }
 
-    const handleDismiss = async (orderId) => {
+    const handleCancel = async (orderId) => {
         try {
             const response = await cancelOrder(orderId);
 
@@ -290,7 +290,6 @@ export default function Order() {
                                     <th></th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
-                                    <th>User</th>
                                     <th>Status</th>
                                     <th>Items</th>
                                     <th></th>
@@ -305,10 +304,9 @@ export default function Order() {
                                             <th>{item.id}</th>
                                             <td>{item.startDate}</td>
                                             <td>{new Date(new Date(item.startDate).getTime() + item.duration * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)}</td>
-                                            <td>{item.user.username}&nbsp;({item.user.trueName})<br />{ROLE_LABELS[item.user.role] || item.user.role}</td>
                                             <td>{STATUS_LABELS[item.status] || item.status}</td>
                                             <td>{item.items.map((subItem) => (
-                                                <div className="flex justify-between min-w-12 md:min-w-32" key={subItem.id}>
+                                                <div className="flex flex-col sm:flex-row justify-between min-w-12 md:min-w-32" key={subItem.id}>
                                                     <span className="text-left">{subItem.equipment.name}</span>
                                                     <span className="text-right"> x {subItem.quantity}</span>
                                                 </div>
@@ -319,9 +317,9 @@ export default function Order() {
 												{['STATUS_WAIT', 'STATUS_SUCCESS'].includes(item.status) && (
                                                     <input
                                                         type="button"
-                                                        value="DISMISS"
+                                                        value="CANCEL"
                                                         className="btn btn-outline btn-error btn-xs sm:btn-sm sm:mx-2"
-                                                        onClick={() => handleDismiss(item.id)}
+                                                        onClick={() => handleCancel(item.id)}
                                                     />
 												)}
                                             </td>

@@ -11,8 +11,6 @@ export default function CartButton({ cart, removeFromCart }) {
 
     const handleCheckout = async () => {
 
-        
-
         try {
             const orderRequest = {
                 startDate: selectedDate,
@@ -27,6 +25,7 @@ export default function CartButton({ cart, removeFromCart }) {
             const result = await addOrder(orderRequest);
             console.log('訂單成功送出:', result);
             alert('訂單已成功送出！');
+            clearCart();
         } catch (error) {
             console.error('送出訂單失敗:', error);
             alert('送出訂單失敗，請重試。');

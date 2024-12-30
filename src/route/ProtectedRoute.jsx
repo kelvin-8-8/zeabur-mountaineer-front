@@ -12,7 +12,8 @@ const ROLE_HIERARCHY = {
 }
 
 
-const ProtectedRoute = ({ children, requireRole, isLoggedIn, role}) => {
+const ProtectedRoute = ({ children, requireRole, isLoggedIn, role, updateAuthState}) => {
+  
 
   if (isLoggedIn === null) {  
     

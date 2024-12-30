@@ -23,14 +23,17 @@ export default function Login({ updateAuthState }) {
 
 	const fetchstats = async () => {
 		try {
+			console.log("fetchstats");
 			const loginResponse = await isLogin();
 			const roleResponse = await checkRole();
 			updateAuthState({
 				isLoggedIn: loginResponse.data,
 				role: roleResponse.data.role
 			});
+			return true
 		} catch (error) {
 			updateAuthState({ isLoggedIn: null, role: null });
+			return false
 		}
 	};
 
@@ -69,14 +72,21 @@ export default function Login({ updateAuthState }) {
 		// console.log(captchaToken);
 
 		try {
-			const result = await login(username, password);
-			alert("登入成功");
-			fetchstats();
-			navigate("/profile");
+			const result = await login(username, password);	
+			
+			const statusUpdated = await fetchstats();
+			if(statusUpdated) {
+				console.log("狀態更新完成，跳轉到 profile...");
+        		navigate("/profile");
+			} else {
+				console.error("狀態更新失敗，無法跳轉");
+			}
+
 		} catch (error) {
 			console.log(error);
 			alert("登入失敗");
 		}
+		
 	}
 	
 

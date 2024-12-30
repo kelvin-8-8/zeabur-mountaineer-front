@@ -79,7 +79,7 @@ export default function AdminPage() {
 
                 <div className='text-center min-h-800px w-full'>
                     <div className="relative overflow-x-auto">
-                        <table className="table-xs sm:table w-full">
+                        <table className="table table-xs sm:table w-full">
                             {/* head */}
                             <thead>
                                 <tr>

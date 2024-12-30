@@ -94,6 +94,7 @@ function App() {
       
   };
 
+  const clearCart = () => setCart([]);
   const removeFromCart = (name) => {
     setCart((prev) => prev.filter(cartItem => cartItem.name !== name));
   }
@@ -121,7 +122,8 @@ function App() {
               updateAuthState={updateAuthState} 
               cart={cart}
               addToCart={addToCart} 
-              removeFromCart={removeFromCart} />}>
+              removeFromCart={removeFromCart} />}
+              clearCart={clearCart}>
 
             {/* 公開路由 */}
 
@@ -142,7 +144,7 @@ function App() {
               path="profile"
               element={
                 <ProtectedRoute requireRole="ROLE_USER" isLoggedIn={authState.isLoggedIn}
-                role={authState.role}>
+                role={authState.role} updateAuthState={updateAuthState}>
                   <Profile updateAuthState={updateAuthState}/>
                 </ProtectedRoute>
               }
@@ -151,7 +153,7 @@ function App() {
               path="order"
               element={
                 <ProtectedRoute requireRole="ROLE_USER" isLoggedIn={authState.isLoggedIn}
-                role={authState.role}>
+                role={authState.role} updateAuthState={updateAuthState}>
                   <Order />
                 </ProtectedRoute>
               }
@@ -163,7 +165,7 @@ function App() {
               path="create/*"
               element={
                   <ProtectedRoute requireRole="ROLE_MEMBER" isLoggedIn={authState.isLoggedIn}
-                  role={authState.role}>
+                  role={authState.role} updateAuthState={updateAuthState}>
                     <Create />
                   </ProtectedRoute>
               }
@@ -173,7 +175,7 @@ function App() {
               element={
           
                 <ProtectedRoute requireRole="ROLE_MEMBER" isLoggedIn={authState.isLoggedIn}
-                role={authState.role}>
+                role={authState.role} updateAuthState={updateAuthState}>
                   <CreateEquipment/>
                 </ProtectedRoute>
               }
@@ -182,7 +184,7 @@ function App() {
               path="create/itinerary"
               element={
                 <ProtectedRoute requireRole="ROLE_MEMBER" isLoggedIn={authState.isLoggedIn}
-                role={authState.role}>
+                role={authState.role} updateAuthState={updateAuthState}>
                   <CreateItinerary />
                 </ProtectedRoute>
               }
@@ -191,7 +193,7 @@ function App() {
               path="order/equipment"
               element={
                 <ProtectedRoute requireRole="ROLE_MEMBER" isLoggedIn={authState.isLoggedIn}
-                role={authState.role}>
+                role={authState.role} updateAuthState={updateAuthState}>
                   <OrderEquipment />
                 </ProtectedRoute>
               }
@@ -202,7 +204,7 @@ function App() {
               path="admin"
               element={
                 <ProtectedRoute requireRole="ROLE_ADMIN" isLoggedIn={authState.isLoggedIn}
-                role={authState.role}>
+                role={authState.role} updateAuthState={updateAuthState}>
                   <AdminPage />
                 </ProtectedRoute>
               }

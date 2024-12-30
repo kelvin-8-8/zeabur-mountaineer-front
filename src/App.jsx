@@ -122,8 +122,9 @@ function App() {
               updateAuthState={updateAuthState} 
               cart={cart}
               addToCart={addToCart} 
-              removeFromCart={removeFromCart} />}
-              clearCart={clearCart}>
+              removeFromCart={removeFromCart} 
+              clearCart={clearCart}/>}
+          >
 
             {/* 公開路由 */}
 

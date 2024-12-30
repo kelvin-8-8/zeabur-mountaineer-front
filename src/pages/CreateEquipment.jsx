@@ -185,13 +185,85 @@ export default function CreateEquipment() {
     return (
         <div className='flex flex-col items-center justify-center'>
             <div className='justify-center items-center content-center max-w-screen-xl'>
-                <div className="card p-4 bg-base-100 rounded-md flex flex-wrap flex-row justify-center gap-6">
-                    <input type="button" value="All" className="btn btn-md" onClick={() => setType('ALL')} />
-                    <input type="button" value="背包" className="btn btn-md" onClick={() => setType('BACKPACK')} />
-                    <input type="button" value="帳篷" className="btn btn-md" onClick={() => setType('TENT')} />
-                    <input type="button" value="睡袋" className="btn btn-md" onClick={() => setType('SLEEPING_BAG')} />
-                    <input type="button" value="其他" className="btn btn-md" onClick={() => setType('ELSE')} />
-                    <input type="button" value="+ Add new Equipment" className="btn btn-md" onClick={() => document.getElementById('create_modal').showModal()} />
+                <div className="p-4 bg-base-100 rounded-md flex flex-wrap flex-row justify-center gap-6">
+                    <input type="button" value="All" className="btn btn-xs md:btn-md " onClick={() => setType('ALL')} />
+                    <input type="button" value="背包" className="btn btn-xs md:btn-md " onClick={() => setType('BACKPACK')} />
+                    <input type="button" value="帳篷" className="btn btn-xs md:btn-md " onClick={() => setType('TENT')} />
+                    <input type="button" value="睡袋" className="btn btn-xs md:btn-md " onClick={() => setType('SLEEPING_BAG')} />
+                    <input type="button" value="其他" className="btn btn-xs md:btn-md " onClick={() => setType('ELSE')} />
+                    <input type="button" value="+ Add new Equipment" className="btn btn-xs md:btn-md " onClick={() => document.getElementById('create_modal').showModal()} />
+                    {/* 新增裝備 modal */}
+                    <dialog id="create_modal" className="modal">
+                        <div className="modal-box">
+                            <div className='flex flex-col items-center justify-center'>
+                                <h3 className="font-bold text-2xl mb-8">新增裝備</h3>
+                                {/* 圖片預覽區域 */}
+                                {previewUrl && (
+                                    <img
+                                        src={previewUrl}
+                                        alt="預覽圖片"
+                                        className="max-h-96 max-w-96"
+                                    />
+                                )}
+                                <div className='flex flex-row items-center justify-center mt-12'>
+                                    <input type="file" className="file-input file-input-bordered w-full max-w-xs" onChange={(e) => handleFileChange(e.target.files)} />
+                                    <button className="btn btn-outline btn-primary ml-6" onClick={uploadImage}>上傳圖片</button>
+                                </div>
+                            </div>
+
+                            <div className="divider"></div>
+
+                            <div className='flex flex-col items-center justify-center'>
+                                <input
+                                    type="text"
+                                    placeholder="name"
+                                    className="input input-bordered input-md mb-6 w-full max-w-xs"
+                                    onChange={(e) => setName(e.target.value)}/>
+                                <input
+                                    type="text"
+                                    placeholder="description"
+                                    className="input input-bordered input-md mb-6 w-full max-w-xs"
+                                    onChange={(e) => setDescription(e.target.value)}/>
+                                <input
+                                    type="text"
+                                    placeholder="price"
+                                    className="input input-bordered input-md mb-6 w-full max-w-xs" 
+                                    onChange={(e) => setPrice(e.target.value)}/>
+                                <select className="select max-w-24 max-w-xs mb-6" name="type" onChange={(e) => setNewType(e.target.value)}>
+                                    <option disabled selected value="">Select a type</option>
+                                    <option value="BACKPACK">BACKPACK</option>
+                                    <option value="TENT">TENT</option>
+                                    <option value="SLEEPING_BAG">SLEEPING_BAG</option>
+                                    <option value="ELSE">ELSE</option>
+                                </select>
+                                
+                                <button className="btn btn-outline btn-success mb-6" onClick={handleCreate}>確認送出</button>
+                                {showAlert && (
+                                    <div role="alert" className="alert alert-warning">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-6 w-6 shrink-0 stroke-current"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                                            />
+                                        </svg>
+                                        <span className='text-center'>警告！ 先上傳圖片，再按確認送出</span>
+                                    </div>
+                                )}
+                            </div>
+
+
+                        </div>
+                        <form method="dialog" className="modal-backdrop">
+                            <button>close</button>
+                        </form>
+                    </dialog>
                 </div>
 
                 {/* 分隔 */}
@@ -200,8 +272,8 @@ export default function CreateEquipment() {
 
                 {/* 表格部分 */}
                 <div className='text-center min-h-800px'>
-                    <div className="overflow-x-auto">
-                        <table className="table">
+                    <div className="overflow-x-auto w-full">
+                        <table className="table table-xs md:table w-full">
                             {/* head */}
                             <thead>
                                 <tr>
@@ -223,9 +295,9 @@ export default function CreateEquipment() {
                                         <td>{items.description}</td>
                                         <td>{items.price}</td>
                                         <td>{items.type}</td>
-                                        <td>
+                                        <td className='flex flex-col items-start'>
                                             {/* 編輯按鈕 */}
-                                            <input type="button" value="EDIT" className="btn btn-outline btn-success btn-sm" onClick={() => document.getElementById(`editmodal-${items.id}`).showModal()} />
+                                            <input type="button" value="EDIT" className="btn btn-outline btn-success btn-xs sm:btn-sm" onClick={() => document.getElementById(`editmodal-${items.id}`).showModal()} />
                                             {/* Modal 編輯*/}
                                             <dialog id={`editmodal-${items.id}`} className="modal" >
                                                 <div className="modal-box w-7/12 md:max-w-5xl">
@@ -293,7 +365,7 @@ export default function CreateEquipment() {
                                                 </form>
                                             </dialog>
                                             {/* 刪除按鈕 */}
-                                            <input type="button" value="DELETE" className="btn btn-outline btn-error btn-sm mx-2" onClick={() => document.getElementById(`deletemodal-${items.id}`).showModal()} />
+                                            <input type="button" value="DELETE" className="btn btn-outline btn-error btn-xs sm:btn-sm sm:mx-2 mt-1" onClick={() => document.getElementById(`deletemodal-${items.id}`).showModal()} />
                                             {/* Modal 刪除*/}
                                             <dialog id={`deletemodal-${items.id}`} className="modal">
                                                 <div className="modal-box max-w-xs">
@@ -328,79 +400,6 @@ export default function CreateEquipment() {
                     </div>
                 </div>
             </div>
-            
-            {/* 新增裝備 modal */}
-            <dialog id="create_modal" className="modal">
-                <div className="modal-box">
-                    <div className='flex flex-col items-center justify-center'>
-                        <h3 className="font-bold text-2xl mb-8">新增裝備</h3>
-                        {/* 圖片預覽區域 */}
-                        {previewUrl && (
-                            <img
-                                src={previewUrl}
-                                alt="預覽圖片"
-                                className="max-h-96 max-w-96"
-                            />
-                        )}
-                        <div className='flex flex-row items-center justify-center mt-12'>
-                            <input type="file" className="file-input file-input-bordered w-full max-w-xs" onChange={(e) => handleFileChange(e.target.files)} />
-                            <button className="btn btn-outline btn-primary ml-6" onClick={uploadImage}>上傳圖片</button>
-                        </div>
-                    </div>
-
-                    <div className="divider"></div>
-
-                    <div className='flex flex-col items-center justify-center'>
-                        <input
-                            type="text"
-                            placeholder="name"
-                            className="input input-bordered input-md mb-6 w-full max-w-xs"
-                            onChange={(e) => setName(e.target.value)}/>
-                        <input
-                            type="text"
-                            placeholder="description"
-                            className="input input-bordered input-md mb-6 w-full max-w-xs"
-                            onChange={(e) => setDescription(e.target.value)}/>
-                        <input
-                            type="text"
-                            placeholder="price"
-                            className="input input-bordered input-md mb-6 w-full max-w-xs" 
-                            onChange={(e) => setPrice(e.target.value)}/>
-                        <select className="select max-w-24 max-w-xs mb-6" name="type" onChange={(e) => setNewType(e.target.value)}>
-                            <option disabled selected value="">Select a type</option>
-                            <option value="BACKPACK">BACKPACK</option>
-                            <option value="TENT">TENT</option>
-                            <option value="SLEEPING_BAG">SLEEPING_BAG</option>
-                            <option value="ELSE">ELSE</option>
-                        </select>
-                        
-                        <button className="btn btn-outline btn-success mb-6" onClick={handleCreate}>確認送出</button>
-                        {showAlert && (
-                            <div role="alert" className="alert alert-warning">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6 shrink-0 stroke-current"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                                    />
-                                </svg>
-                                <span className='text-center'>警告！ 先上傳圖片，再按確認送出</span>
-                            </div>
-                        )}
-                    </div>
-
-
-                </div>
-                <form method="dialog" className="modal-backdrop">
-                    <button>close</button>
-                </form>
-            </dialog>
 
         </div>
     )

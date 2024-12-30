@@ -50,7 +50,7 @@ export default function CartButton({ cart, removeFromCart }) {
     return (
         <div className="drawer drawer-end">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-row items-center justify-center w-8 h-8 md:w-12 md:h-12">
+            <div className="drawer-content flex flex-row items-center justify-center ">
                 {/* Page content here */}
                 <label htmlFor="my-drawer-4" className="drawer-button btn btn-sm sm:btn-md btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">

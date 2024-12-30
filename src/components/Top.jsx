@@ -25,8 +25,8 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
     
     
   return (
-    <div className="flex flex-col justify-center items-center bg-base-200">
-      <div className="navbar bg-base-200 max-w-screen-xl z-30 relative">
+    <div className="flex flex-col justify-center items-center bg-base-200 w-full">
+      <div className="navbar bg-base-200 xs:w-full max-w-screen-xl z-30 relative">
         {/* 左側 */}
         <div className="navbar-start">
           {/* 手機板 下拉式 */}
@@ -84,6 +84,22 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
                   <ul className="p-2">
                     <li className="underline">
                       <Link to="/create/equipment">新增裝備</Link>
+                    </li>
+                    {/* <li>
+                      <Link to="/create/itinerary">新增隊伍</Link>
+                    </li> */}
+                  </ul>
+                </li> :
+                <></>
+              }
+              {/* Order */}
+              {
+                isLoggedIn && ROLE_HIERARCHY[role] >= ROLE_HIERARCHY["ROLE_ADMIN"] ? 
+                <li className="text-success">
+                  <a>Creates</a>
+                  <ul className="p-2">
+                    <li className="underline">
+                      <Link to="/order/equipment">裝備訂單</Link>
                     </li>
                     {/* <li>
                       <Link to="/create/itinerary">新增隊伍</Link>

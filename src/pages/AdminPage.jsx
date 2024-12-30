@@ -68,18 +68,18 @@ export default function AdminPage() {
     <div className='flex flex-col items-center justify-center'>
             <div className='flex flex-row flex-wrap justify-center items-center content-center max-w-screen-xl'>
                 <div className="card p-4 bg-base-100 rounded-md flex flex-wrap flex-row justify-center gap-6">
-                    <input type="button" value="All" className={`btn btn-md ${roleFilters.length === 3 ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ALL')}/>
-                    <input type="button" value="User" className={`btn btn-md ${roleFilters.includes('ROLE_GUEST') ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ROLE_GUEST')}/>
-                    <input type="button" value="Member" className={`btn btn-md ${roleFilters.includes('ROLE_MEMBER') ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ROLE_MEMBER')}/>
-                    <input type="button" value="Admin" className={`btn btn-md ${roleFilters.includes('ROLE_ADMIN') ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ROLE_ADMIN')}/>
+                    <input type="button" value="All" className={`btn btn-xs md:btn-md ${roleFilters.length === 3 ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ALL')}/>
+                    <input type="button" value="User" className={`btn btn-xs md:btn-md ${roleFilters.includes('ROLE_GUEST') ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ROLE_GUEST')}/>
+                    <input type="button" value="Member" className={`btn btn-xs md:btn-md ${roleFilters.includes('ROLE_MEMBER') ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ROLE_MEMBER')}/>
+                    <input type="button" value="Admin" className={`btn btn-xs md:btn-md ${roleFilters.includes('ROLE_ADMIN') ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ROLE_ADMIN')}/>
                 </div>
 
                 <div className="divider"></div>
 
 
                 <div className='text-center min-h-800px w-full'>
-                    <div className="overflow-x-auto">
-                        <table className="table table-auto w-full">
+                    <div className="relative overflow-x-auto">
+                        <table className="table-xs sm:table w-full">
                             {/* head */}
                             <thead>
                                 <tr>
@@ -106,7 +106,7 @@ export default function AdminPage() {
                                                 <input
                                                     type="button"
                                                     value="Upgrade"
-                                                    className="btn btn-outline btn-success btn-sm"
+                                                    className="btn btn-xs btn-outline btn-success sm:btn-sm"
                                                     onClick={() => handleUpgrade(item.id)}
                                                 />
                                                 {/* <input

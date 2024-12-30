@@ -269,13 +269,13 @@ export default function OrderEquipment() {
 	return (
 		<div className='flex flex-col items-center justify-center'>
 			<div className='justify-center items-center content-center max-w-screen-xl'>
-				<div className="card p-4 bg-base-100 rounded-md flex flex-wrap flex-row justify-center gap-6">
-					<input type="button" value="All" className={`btn btn-md ${statusFilters.length === 5 ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('ALL')} />
-					<input type="button" value="待審核" className={`btn btn-md ${statusFilters.includes('STATUS_WAIT') ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('STATUS_WAIT')} />
-					<input type="button" value="已取消" className={`btn btn-md ${statusFilters.includes('STATUS_CANCEL') ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('STATUS_CANCEL')} />
-					<input type="button" value="待領取" className={`btn btn-md ${statusFilters.includes('STATUS_SUCCESS') ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('STATUS_SUCCESS')} />
-					<input type="button" value="出借中" className={`btn btn-md ${statusFilters.includes('STATUS_BORROW') ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('STATUS_BORROW')} />
-					<input type="button" value="已歸還" className={`btn btn-md ${statusFilters.includes('STATUS_COMPLETE') ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('STATUS_COMPLETE')} />
+				<div className="card p-4 bg-base-100 rounded-md flex flex-wrap flex-row justify-center items-center content-center gap-6">
+					<input type="button" value="All" className={`btn btn-xs md:btn-md ${statusFilters.length === 5 ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('ALL')} />
+					<input type="button" value="待審核" className={`btn btn-xs md:btn-md ${statusFilters.includes('STATUS_WAIT') ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('STATUS_WAIT')} />
+					<input type="button" value="已取消" className={`btn btn-xs md:btn-md ${statusFilters.includes('STATUS_CANCEL') ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('STATUS_CANCEL')} />
+					<input type="button" value="待領取" className={`btn btn-xs md:btn-md ${statusFilters.includes('STATUS_SUCCESS') ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('STATUS_SUCCESS')} />
+					<input type="button" value="出借中" className={`btn btn-xs md:btn-md ${statusFilters.includes('STATUS_BORROW') ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('STATUS_BORROW')} />
+					<input type="button" value="已歸還" className={`btn btn-xs md:btn-md ${statusFilters.includes('STATUS_COMPLETE') ? 'text-warning' : ''}`} onClick={() => handleStatusFilter('STATUS_COMPLETE')} />
 				</div>
 
 				<div className="divider"></div>
@@ -283,7 +283,7 @@ export default function OrderEquipment() {
 
 				<div className='text-center min-h-800px'>
 					<div className="overflow-x-auto">
-						<table className="table">
+						<table className="table table-xs sm:table">
 							{/* head */}
 							<thead>
 								<tr>
@@ -308,7 +308,7 @@ export default function OrderEquipment() {
 											<td>{item.user.username}&nbsp;({item.user.trueName})<br />{ROLE_LABELS[item.user.role] || item.user.role}</td>
 											<td>{STATUS_LABELS[item.status] || item.status}</td>
 											<td>{item.items.map((subItem) => (
-												<div className="flex justify-between min-w-32" key={subItem.id}>
+												<div className="flex flex-row justify-between md:min-w-32" key={subItem.id}>
 													<span className="text-left">{subItem.equipment.name}</span>
 													<span className="text-right"> x {subItem.quantity}</span>
 												</div>
@@ -321,13 +321,13 @@ export default function OrderEquipment() {
 														<input
 															type="button"
 															value="APPROVE"
-															className="btn btn-outline btn-success btn-sm"
+															className="btn btn-outline btn-success btn-xs sm:btn-sm "
 															onClick={() => handleApprove(item.id)}
 														/>
 														<input
 															type="button"
 															value="DISMISS"
-															className="btn btn-outline btn-error btn-sm mx-2"
+															className="btn btn-outline btn-error btn-xs sm:btn-sm mx-1 sm:mx-2 mt-1"
 															onClick={() => handleDismiss(item.id)}
 														/>
 													</>

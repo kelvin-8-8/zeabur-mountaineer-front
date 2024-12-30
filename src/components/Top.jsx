@@ -104,7 +104,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
           </div>
           {/* 標題 */}
           {}
-          <Link to="/" className="text-4xl font-tradewinds pl-4">Mountaineer</Link>
+          <Link to="/" className="text-2xl md:text-4xl font-tradewinds md:pl-4">Mountaineer</Link>
         </div>
 
         {/* 中間 */}

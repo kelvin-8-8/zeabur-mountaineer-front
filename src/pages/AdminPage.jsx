@@ -1,23 +1,83 @@
-import React, {useState} from 'react'
-import 'datatables.net-dt/css/dataTables.dataTables.min.css';
-import "datatables.net";
+import React, {useState, useEffect} from 'react'
+import { getAllUser, upgradeUser } from '../services/UserService';
 
 export default function AdminPage() {
 
-    const [items, setItems] = useState();
+    const ROLE_LABELS = {
+		"ROLE_GUEST": "User",
+		"ROLE_MEMBER": "Member",
+		"ROLE_ADMIN": "Admin"
+	};
+
+    const [users, setUsers] = useState([])
+    const [filterUsers, setFilterUsers] = useState(users);
+    const [roleFilters, setRoleFilters] = useState(['ROLE_GUEST', 'ROLE_MEMBER', 'ROLE_ADMIN']);
+
+
+    const loadUser = async() => {
+        try {
+            const result = await getAllUser();
+            setUsers(result.data);
+            setFilterUsers(result.data);
+            console.log(filterUsers);
+            
+
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    }
+
+    useEffect(() => {
+        loadUser();
+    }, []);
+
+    useEffect(() => {
+    
+        console.log("roleFilter的長度" + roleFilters.length);
+        setFilterUsers(users.filter((user) => roleFilters.includes(user.role)));
+
+    }, [roleFilters, users]); 
+
+    const handleRoleFilter = (role) => {
+        setRoleFilters((prev) => {
+
+            if (role === 'ALL') {
+                return prev.length === 3 ? [] : ['ROLE_GUEST', 'ROLE_MEMBER', 'ROLE_ADMIN'];
+            }
+            if (prev.includes(role)) {
+                // 移除已存在的篩選條件
+                return prev.filter((s) => s !== role);
+            }
+            // 新增篩選條件
+            return [...prev, role];
+        });
+    };
+
+    const handleUpgrade = async(userId) => {
+        try {
+            const result = await upgradeUser(userId);
+            
+            loadUser();
+            return result.data;
+        } catch (error) {
+            console.error("Error upgrading user:", error);
+        }
+    }
 
   return (
     <div className='flex flex-col items-center justify-center'>
             <div className='justify-center items-center content-center max-w-screen-xl'>
                 <div className="card p-4 bg-base-100 rounded-md flex flex-wrap flex-row justify-center gap-6">
-                    <input type="button" value="~~" className="btn btn-md" />
-                    <input type="button" value="~~~" className="btn btn-md" />
+                    <input type="button" value="All" className={`btn btn-md ${roleFilters.length === 3 ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ALL')}/>
+                    <input type="button" value="User" className={`btn btn-md ${roleFilters.includes('ROLE_GUEST') ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ROLE_GUEST')}/>
+                    <input type="button" value="Member" className={`btn btn-md ${roleFilters.includes('ROLE_MEMBER') ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ROLE_MEMBER')}/>
+                    <input type="button" value="Admin" className={`btn btn-md ${roleFilters.includes('ROLE_ADMIN') ? 'text-warning' : ''}`} onClick={() => handleRoleFilter('ROLE_ADMIN')}/>
                 </div>
 
                 <div className="divider"></div>
 
 
-                <div className='text-center min-h-700px'>
+                <div className='text-center min-h-800px'>
                     <div className="overflow-x-auto">
                         <table className="table">
                             {/* head */}
@@ -34,32 +94,32 @@ export default function AdminPage() {
                             {/* body */}
                             <tbody>
                                 {/* row 1 */}
-                                <tr className="hover">
-                                    <th>1</th>
-                                    <td>Cy Ganderton</td>
-                                    <td>Quality Control Specialist</td>
-                                    <td>Blue</td>
-                                    <td>Blue</td>
-                                    <td>
-                                        <input type="button" value="EDIT" className="btn btn-xs md:btn-sm" />
-                                    </td>
-                                </tr>
-                                {/* row 2 */}
-                                <tr className="hover">
-                                    <th>2</th>
-                                    <td>Hart Hagerty</td>
-                                    <td>Desktop Support Technician</td>
-                                    <td>Purple</td>
-                                    <td>Blue</td>
-                                </tr>
-                                {/* row 3 */}
-                                <tr className="hover">
-                                    <th>3</th>
-                                    <td>Brice Swyre</td>
-                                    <td>Tax Accountant</td>
-                                    <td>Red</td>
-                                    <td>Blue</td>
-                                </tr>
+                                {
+                                    filterUsers.map( (item) => (
+                                        <tr className='hover' key={item.id}>
+                                            <td>{item.id}</td>
+                                            <td>{item.trueName}</td>
+                                            <td>{item.username}</td>
+                                            <td>{item.email}</td>
+                                            <td>{item.role}</td>
+                                            <td>
+                                                <input
+                                                    type="button"
+                                                    value="Upgrade"
+                                                    className="btn btn-outline btn-success btn-sm"
+                                                    onClick={() => handleUpgrade(item.id)}
+                                                />
+                                                {/* <input
+                                                    type="button"
+                                                    value="DISMISS"
+                                                    className="btn btn-outline btn-error btn-sm mx-2"
+                                                    onClick={() => handleDismiss(item.id)}
+                                                /> */}
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            
                             </tbody>
                         </table>
                     </div>
@@ -68,5 +128,5 @@ export default function AdminPage() {
 
 
         </div>
-  )
+    )
 }

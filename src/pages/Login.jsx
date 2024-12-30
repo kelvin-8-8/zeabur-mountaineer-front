@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { login, isLogin, checkRole } from "../services/authService";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../route/AuthContext";
+import { api } from "../config/api";
 import ReCAPTCHA from 'react-google-recaptcha';
 import useRecaptcha from "../config/useRecaptcha";
-import { api } from "../config/api";
+
 
 export default function Login({ updateAuthState }) {
 
@@ -70,7 +70,6 @@ export default function Login({ updateAuthState }) {
 
 		try {
 			const result = await login(username, password);
-			console.log("Login successful:", result);
 			alert("登入成功");
 			fetchstats();
 			navigate("/profile");

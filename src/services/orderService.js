@@ -30,9 +30,9 @@ export const getYourOrder = async () => {
     }
 }
 
-export const confirmOrder = async () => {
+export const confirmOrder = async (id) => {
     try {
-        const response = await api.get("/order/change")
+        const response = await api.get("/order/change", {params: {id}})
         return response.data;
     } catch (error) {
         console.error("Error in confirmOrder:", error.response?.data || error.message);
@@ -40,9 +40,9 @@ export const confirmOrder = async () => {
     }
 }
 
-export const cancelOrder = async () => {
+export const cancelOrder = async (id) => {
     try {
-        const response = await api.get("/order/cancel")
+        const response = await api.get("/order/cancel", {params: {id}})
         return response.data;
     } catch (error) {
         console.error("Error in cancelOrder:", error.response?.data || error.message);

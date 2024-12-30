@@ -92,7 +92,6 @@ export default function Profile( {updateAuthState} ) {
 								<input
 									type="text"
 									className="grow"
-									placeholder="Enter your real name"
 									value={trueName}
 									onChange={(e) => setTrueName(e.target.value)}
 								/>

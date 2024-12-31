@@ -55,17 +55,17 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
               tabIndex={0}
               className="relative top-10 menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              {/* HOME */}
+              {/* 首頁 */}
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">首頁</Link>
               </li>
-              {/* ABOUT */}
+              {/* 關於 */}
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/about">關於</Link>
               </li>
-              {/* Features */}
+              {/* 功能 */}
               <li>
-                <a>Features</a>
+                <a>功能</a>
                 <ul className="p-2">
                   <li>
                     <Link to="/equipment">借裝備</Link>
@@ -126,18 +126,18 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
         {/* 中間 */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            {/* HOME */}
+            {/* 首頁 */}
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">首頁</Link>
             </li>
-            {/* ABOUT */}
+            {/* 關於 */}
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/about">關於</Link>
             </li>
-            {/* Features */}
+            {/* 功能 */}
             <li>
               <details className="dropdownDetails ">
-                  <summary>Features</summary>
+                  <summary>功能</summary>
                   <ul className="relative top-6 w-32">
                     <li>
                       <Link to="/equipment">借裝備</Link>

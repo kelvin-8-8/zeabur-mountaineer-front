@@ -249,7 +249,8 @@ export default function OrderEquipment() {
 	const handleApprove = async (orderId) => {
 		try {
 			const response = await confirmOrder(orderId);
-
+			console.log("確認: " , response);
+			
 			loadOrders();
 		} catch (error) {
 			console.error("Error approve order:", error);
@@ -259,12 +260,14 @@ export default function OrderEquipment() {
 	const handleDismiss = async (orderId) => {
 		try {
 			const response = await cancelOrder(orderId);
+			console.log("取消: " , response);
 
 			loadOrders()
 		} catch (error) {
 			console.error("Error dismiss order:", error);
 		}
 	}
+
 
 	return (
 		<div className='flex flex-col items-center justify-center'>

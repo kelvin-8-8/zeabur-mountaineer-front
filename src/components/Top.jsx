@@ -153,7 +153,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
               isLoggedIn && ROLE_HIERARCHY[role] >= ROLE_HIERARCHY["ROLE_MEMBER"] ? 
               <li className="text-success">
                 <details className="dropdownDetails ">
-                  <summary>Create</summary>
+                  <summary>管理裝備</summary>
                   <ul className="relative top-6 w-32">
                     <li>
                       <Link to="/create/equipment">新增裝備</Link>
@@ -171,7 +171,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
               isLoggedIn && ROLE_HIERARCHY[role] >= ROLE_HIERARCHY["ROLE_MEMBER"] ? 
               <li className="text-success">
                 <details className="dropdownDetails ">
-                  <summary>Order</summary>
+                  <summary>管理訂單</summary>
                   <ul className="relative top-6 w-32">
                     <li>
                       <Link to="/order/equipment">裝備訂單</Link>
@@ -188,7 +188,7 @@ export default function Top({ isLoggedIn, role, updateAuthState, cart, removeFro
             {
               isLoggedIn && ROLE_HIERARCHY[role] >= ROLE_HIERARCHY["ROLE_ADMIN"] ? 
               <li className="text-success">
-                <Link to="/admin">Admin</Link>
+                <Link to="/admin">管理人員</Link>
               </li> :
               <></>
             }
